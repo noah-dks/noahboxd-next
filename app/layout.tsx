@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <body className="bg-slate-950">
+      <body className="bg-primarybg">
         <Navbar />
         {children}
       </body>

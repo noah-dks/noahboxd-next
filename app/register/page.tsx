@@ -41,10 +41,10 @@ function RegisterPage() {
 
   return (
     <div className="flex justify-center">
-      <Card className="w-1/3 mt-10 sm:max-w-md bg-slate-900 text-white">
+      <Card className="w-1/3 mt-10 sm:max-w-md bg-cardbg text-primarytext">
         <CardHeader>
           <CardTitle>Register</CardTitle>
-          <CardDescription className="text-white/70">
+          <CardDescription className="text-secondtext">
             Register a new user!
           </CardDescription>
         </CardHeader>

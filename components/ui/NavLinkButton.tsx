@@ -17,7 +17,7 @@ export default function NavItem({ href, children }: NavItemProps) {
       <NavigationMenuLink asChild>
         <Link
           href={href}
-          className="p-1 focus:bg-transparent text-white hover:bg-slate-700"
+          className="p-1 focus:bg-transparent text-secondtext hover:bg-subtledetail/20 hover:text-primarytext"
         >
           {children}
         </Link>

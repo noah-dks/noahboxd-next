@@ -11,7 +11,7 @@ async function MoviePage() {
   const movies = await db.movies;
 
   return (
-    <div className="flex flex-col gap-10 p-10 w-1/2">
+    <div className="grid grid-cols-1 w-full gap-10 p-10">
       {movies.map((movie) => (
         <MovieCard movie={movie} key={movie.id} />
       ))}
