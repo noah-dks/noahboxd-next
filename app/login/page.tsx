@@ -15,11 +15,14 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { signIn, signUp } from "@/lib/auth-client";
 import { loginSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import z from "zod";
 
 function Login() {
@@ -32,8 +35,19 @@ function Login() {
   });
 
   async function onSubmit(data: z.infer<typeof loginSchema>) {
-    console.log(data);
-    //what happens after
+    const result = await signIn.username({
+      username: data.username,
+      password: data.password,
+    });
+
+    if (result.error) {
+      toast.error("Login failed", {
+        description: result.error.message || "Unable to login",
+      });
+      return;
+    }
+    toast.success("Login successful");
+    redirect("/profile");
   }
 
   return (
@@ -41,11 +55,13 @@ function Login() {
       <Card className="w-1/3 mt-20 sm:max-w-md bg-cardbg text-primarytext">
         <CardHeader>
           <CardTitle>Login</CardTitle>
-          <CardDescription className="text-secondtext">Login to an existing user</CardDescription>
+          <CardDescription className="text-secondtext">
+            Login to an existing user
+          </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <form id="login" onSubmit={form.handleSubmit(onSubmit)} >
+          <form id="login" onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup>
               <Controller
                 name="username"
@@ -59,7 +75,6 @@ function Login() {
                       aria-invalid={fieldState.invalid}
                       autoComplete="off"
                       placeholder="JohnDoe123"
-                      
                     />
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />

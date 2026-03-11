@@ -11,7 +11,6 @@ export const registerSchema = z.object({
     .min(2, "Username must be at least 2 characters")
     .max(64, "Username must be at most 32 characters"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  admin: z.boolean(),
 });
 
 export const loginSchema = z.object({
@@ -19,6 +18,3 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Password cannot be empty"),
 });
 
-export const movieSchema = z.object({
-  favouriteMovie: z.string().min(1, "Movie cannot be empty"),
-});

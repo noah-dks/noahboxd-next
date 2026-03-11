@@ -11,7 +11,7 @@ type NavItemProps = {
   children: React.ReactNode;
 };
 
-export default function NavItem({ href, children }: NavItemProps) {
+export default function NavItem({ href, children}: NavItemProps) {
   return (
     <NavigationMenuItem>
       <NavigationMenuLink asChild>
