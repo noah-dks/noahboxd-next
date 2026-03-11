@@ -1,20 +1,30 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import db from "@/data/mock-db.json";
 import MovieCard from "./_components/MovieCard";
+import RatingCard from "./_components/RatingCard";
+import { Button } from "@/components/ui/button";
 
 async function MoviePage() {
   const movies = await db.movies;
+  const chosenMovie = movies[1];
 
   return (
-    <div className="grid grid-cols-1 w-full gap-10 p-10">
-      {movies.map((movie) => (
-        <MovieCard movie={movie} key={movie.id} />
-      ))}
+    <div className="flex flex-row py-10  gap-20 mx-10" >
+      <div className="w-3/5">
+        {/* {movies.map((movie) => (
+          <MovieCard movie={movie} key={movie.id} />
+          ))} */}
+        <MovieCard movie={chosenMovie} key={chosenMovie.id} />
+      </div>
+
+      <div className="flex flex-col w-1/3 gap-15 my-20 items-center">
+        <RatingCard
+          averageRate={chosenMovie.averageRate}
+          devRate={chosenMovie.minimumAllowedRating}
+
+          />
+
+        <Button className="p-7 text-lg cursor-pointer w-60">Show next movie</Button>
+      </div>
     </div>
   );
 }

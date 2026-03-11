@@ -1,4 +1,10 @@
-import db from "@/data/mock-db.json"
+import "dotenv/config";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "../generated/prisma/client";
 
-const movies = db.movies
-const users = db.users
+const connectionString = `${process.env.DATABASE_URL}`;
+
+const adapter = new PrismaPg({ connectionString });
+const db = new PrismaClient({ adapter });
+
+export { db };

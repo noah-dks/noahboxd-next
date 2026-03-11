@@ -6,8 +6,9 @@ import {
   CardContent,
   Card,
 } from "@/components/ui/card";
+import { formatRunTime } from "@/lib/utils";
 
-interface MovieDisplay {
+export interface MovieDisplay {
   id: number;
   title: string;
   releaseYear: number;
@@ -21,13 +22,16 @@ interface MovieDisplay {
 }
 
 function MovieCard({ movie }: { movie: MovieDisplay }) {
+  const formattedRuntime = formatRunTime(movie.runTimeMin);
   return (
-    <Card className="text-white bg-cardbg/60 shadow-lg border-bgdetails p-3 border-2 w-1/2">
+    <Card className="text-white bg-cardbg/60 shadow-lg border-bgdetails p-3 border-2">
       <CardHeader className="flex flex-col items-center text-center gap-2">
         <CardTitle className="text-2xl p-1">{movie.title}</CardTitle>
 
         <CardDescription className="text-sm text-secondtext">
-          {movie.releaseYear} • {movie.director} • {movie.runTimeMin} min
+          {movie.releaseYear} •{" "}
+          <span className="text-orangecontrast">{movie.director}</span> •{" "}
+          {formattedRuntime}
         </CardDescription>
 
         <img
@@ -50,7 +54,7 @@ function MovieCard({ movie }: { movie: MovieDisplay }) {
             </li>
           ))}
         </ul>
-        <p className="text-lg w-full leading-relaxed">{movie.description}</p>
+        <p className="text-lg w-full text-secondtext">{movie.description}</p>
       </CardContent>
     </Card>
   );

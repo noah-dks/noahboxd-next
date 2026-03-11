@@ -4,7 +4,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "./navigation-menu";
+} from "./ui/navigation-menu";
 import NavItem from "./NavLinkButton";
 
 function Navbar() {
